@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public bool knockFromRight;
 
     // Insanity Mechanic Varibles
-    public float playerInsanity = 100;
+    public float playerInsanity = 201;
     public bool checkInsanity = true;
     public int insanityEffect;
     public Transform insanityJumpHeight;
@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
             if (insanityCheck <= playerInsanity)
             {
                 checkInsanity = false;
-                insanityEffect = Random.Range(0,6);
+                insanityEffect = Random.Range(0,5);
                 switch (insanityEffect)
                 {
                     case 0:
@@ -163,7 +163,7 @@ public class PlayerController : MonoBehaviour
                         {
                             HealthManager.playerMaxHealth += 10;
                             Debug.Log("Health Increased");
-                            HealthManager.playerHealth = HealthManager.playerMaxHealth;
+                            //HealthManager.playerHealth = HealthManager.playerMaxHealth;
                             StartCoroutine(InsanityEffectHealth(insanityHealth));
                             break;
                         }
@@ -174,15 +174,8 @@ public class PlayerController : MonoBehaviour
                             StartCoroutine(InsanityEffectMoveSpeed(insanityMoveSpeed));
                             break;
                         }
+
                     case 3:
-                        {
-                            HealthManager.playerMaxHealth += 10;
-                            Debug.Log("Health Increased");
-                            HealthManager.playerHealth = HealthManager.playerMaxHealth;
-                            StartCoroutine(InsanityEffectHealth(insanityHealth));
-                            break;
-                        }
-                    case 4:
                         {
                             HealthManager.playerMaxHealth = 3;
                             Debug.Log("Health Decreased");
@@ -190,7 +183,7 @@ public class PlayerController : MonoBehaviour
                             StartCoroutine(InsanityEffectHealth(insanityHealth));
                             break;
                         }
-                    case 5:
+                    case 4:
                         {
                             moveSpeed = 3;
                             Debug.Log("Movespeed Decreased");

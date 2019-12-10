@@ -8,14 +8,19 @@ public class HealthManager : MonoBehaviour {
     public static int playerHealth;
     public bool isDead;
     public static int defaultPlayerMaxHealth = 5;
-    Text text;
+    //Text text;
+
+    public Slider healthBar;
     
     private LevelManager levelManager;
     public Transform healthRegen;
+
+
 	///Use this for initialization
 	void Start () {
 
-        text = GetComponent<Text>();
+        //text = GetComponent<Text>();
+        healthBar = GetComponent<Slider>();
         playerMaxHealth = defaultPlayerMaxHealth;
         playerHealth = defaultPlayerMaxHealth;
         levelManager = FindObjectOfType<LevelManager>();
@@ -29,13 +34,16 @@ public class HealthManager : MonoBehaviour {
         
 		if (playerHealth <= 0 && !isDead) {
 			playerHealth = 0;
-			text.text = "" + playerHealth + " / " + playerMaxHealth;
+			//text.text = "" + playerHealth + " / " + playerMaxHealth;
 			levelManager.RespawnPlayer ();
 			isDead = true;
-		} else {
-			text.text = "" + playerHealth + " / " + playerMaxHealth;
-        
 		}
+        // else {
+        //	//text.text = "" + playerHealth + " / " + playerMaxHealth;
+
+        //}
+        healthBar.maxValue = playerMaxHealth;
+        healthBar.value = playerHealth;
         
 	}
 
